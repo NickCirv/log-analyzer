@@ -1,0 +1,11 @@
+{
+  "name": "log-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze web server and application logs. Traffic patterns, errors, top IPs, suspicious activity.",
+  "type": "module",
+  "bin": { "log-analyzer": "./index.js", "loga": "./index.js" },
+  "engines": { "node": ">=18" },
+  "keywords": ["developer-tools", "cli", "nodejs", "zero-dependencies", "logs", "nginx", "apache", "monitoring"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/NickCirv/log-analyzer" }
+}
