@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # log-analyzer
 > Analyze web server logs instantly. Traffic patterns, errors, suspicious IPs, timeline.
 
