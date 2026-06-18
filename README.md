@@ -1,47 +1,43 @@
-![Banner](banner.svg)
+<div align="center">
 
 # log-analyzer
-> Analyze web server logs instantly. Traffic patterns, errors, suspicious IPs, timeline.
 
-```bash
-npx log-analyzer access.log
-npx log-analyzer app.log --errors
-```
+**Instant traffic analysis for Nginx, Apache, and JSON logs — right in your terminal**
 
-```
-log-analyzer · access.log (42,891 lines)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen?labelColor=0B0A09)](LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?labelColor=0B0A09)](package.json)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?labelColor=0B0A09)](package.json)
 
-Traffic: 42,891 requests · 14.2 req/sec · peak 87/min
-
-Status Codes:
-  200 OK          38,421  (89.6%)
-  404 Not Found    1,847   (4.3%)  ⚠
-  500 Error          514   (1.2%)  🔴
-
-Top IPs:
-  192.168.1.42   2,341 requests  ⚠ suspicious
-
-Traffic Timeline (hourly):
-  12h  ████████████████████  8,421
-  13h  ███████████░░░░░░░░░  4,209
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-## Commands
-| Command | Description |
-|---------|-------------|
-| `log-analyzer <file>` | Analyze log file |
-| `--errors` | Show only errors |
-| `--ip <address>` | Filter to one IP |
-| `--tail N` | Last N lines only |
-| `--format json\|table` | Output format |
+</div>
 
 ## Install
+
 ```bash
-npx log-analyzer access.log
-npm install -g log-analyzer
+npx github:NickCirv/log-analyzer access.log
 ```
 
+## Usage
+
+```bash
+# Analyze a log file
+npx github:NickCirv/log-analyzer access.log
+
+# Show only errors (4xx/5xx), last 10 000 lines, output as JSON
+npx github:NickCirv/log-analyzer access.log --errors --tail 10000 --format json
+```
+
+| Flag | Description |
+|------|-------------|
+| `--errors` | Show only 4xx/5xx error entries |
+| `--ip <address>` | Filter to a single IP address |
+| `--since "<time>"` | Entries after a time, e.g. `"1 hour ago"` or `"2024-01-01"` |
+| `--tail <N>` | Analyze only the last N lines |
+| `--format json\|table` | Output format (default: `table`) |
+| `-h, --help` | Show help |
+
+## What it does
+
+Reads Nginx/Apache combined logs or NDJSON log files and prints a summary of traffic volume, status code breakdown, top IPs and URLs, an hourly timeline, and any IPs exceeding 100 requests/minute (flagged as suspicious). The `--format json` flag outputs the same data as structured JSON, suitable for piping into other tools.
+
 ---
-**Zero dependencies** · **Node 18+** · Made by [NickCirv](https://github.com/NickCirv) · MIT
+<sub>Zero dependencies · Node 18+ · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
